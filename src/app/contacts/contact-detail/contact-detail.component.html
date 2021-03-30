@@ -1,0 +1,58 @@
+<div class="p-3">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-three-fifths">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">CONTACT DETAIL</p>
+                </header>
+                <div class="card-content">
+                    <table class="table is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Firstname</td>
+                                <td>{{contact.firstName}}</td>
+                            </tr>
+                            <tr>
+                                <td>Lastname</td>
+                                <td>{{contact.lastName}}</td>
+                            </tr>
+                            <tr>
+                                <td>Sex</td>
+                                <td>{{contact.sex}}</td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td>{{contact.category}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phones</td>
+                                <td>
+                                    <div class="content">
+                                        <ol>
+                                            <li *ngFor="let item of phoneList"><strong>{{item}}</strong></li>
+                                        </ol>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="card-footer">
+                    <a class="card-footer-item" routerLink="/contacts">Go Back</a>
+                    <a href="#" class="card-footer-item" [routerLink]="['/contacts/edit', contact.id]">Edit</a>
+                    <button class="card-footer-item" (click)="deleteActive = !deleteActive">Delete</button>
+                </footer>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
+
+<app-contact-delete [contact]="contact" [isActive]="deleteActive"></app-contact-delete>

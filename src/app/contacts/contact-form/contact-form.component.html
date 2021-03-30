@@ -1,0 +1,101 @@
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title" *ngIf="!isCreate">EDIT A CONTACT</p>
+        <p class="card-header-title" *ngIf="isCreate">CREATE A NEW CONTACT</p>
+    </header>
+    <div class="card-content">
+        <form (submit)="onSubmit($event)" [formGroup]="contactForm">
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Firstname</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="e.g Alex" formControlName="firstName">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Lastname</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="e.g Smith" formControlName="lastName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Sex</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select formControlName="sex">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Category</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="e.g Cousin" formControlName="category">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label for="" class="label">Phone numbers</label>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input #tempPhone class="input" type="text" placeholder="New Phone">
+                            </div>
+                            <div class="control">
+                                <a class="button is-info" (click)="addPhone(tempPhone.value)">
+                                    Add
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <table class="table is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of phoneList; index as i">
+                                <td>{{i + 1}}</td>
+                                <td>{{item}}</td>
+                                <td>
+                                    <button class="button is-danger" (click)="removePhone(item)">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <div class="control">
+                        <div class="buttons">
+                            <button class="button is-primary" type="submit"><strong>Save</strong></button>
+                            <button class="button is-danger" type="button" (click)="reset(); tempPhone.value=''">Reset</button>
+                            <a class="button is-info" routerLink="/contacts">Go Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
